@@ -1,5 +1,5 @@
 import type { TempoCandidate } from "@hum2music/core";
-import type { TimedNote } from "./timed-note";
+import type { TimedNote } from "./timed-note.ts";
 
 export interface TempoEstimationOptions {
   minIntervalMs?: number;

@@ -1,5 +1,5 @@
 import type { NoteEvent } from "@hum2music/core";
-import type { TimedNote } from "./timed-note";
+import type { TimedNote } from "./timed-note.ts";
 
 /** Sixteenth-note grid: fine enough that quarter/eighth/dotted values fall exactly on it. */
 const GRID_STEP_BEATS = 1 / 4;

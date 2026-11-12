@@ -1,5 +1,5 @@
 import type { NoteEvent } from "@hum2music/core";
-import type { BarSegment } from "./chord-candidates";
+import type { BarSegment } from "./chord-candidates.ts";
 
 /** Splits quantized notes into fixed-size bars, per PRD §7.2's 4/4-only MVP scope. */
 export function groupNotesIntoBars(notes: NoteEvent[], beatsPerBar = 4): BarSegment[] {

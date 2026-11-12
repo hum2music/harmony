@@ -1,6 +1,6 @@
 import type { KeyCandidate } from "@hum2music/core";
 import { KEY_PROFILES, NOTE_NAMES, pitchClassOf, type ScaleMode } from "@hum2music/music-theory";
-import type { TimedNote } from "./timed-note";
+import type { TimedNote } from "./timed-note.ts";
 
 /**
  * Correlates a duration-weighted pitch-class histogram against all 24

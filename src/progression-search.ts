@@ -1,8 +1,8 @@
 import type { ChordEvent, KeyCandidate } from "@hum2music/core";
 import { NOTE_NAMES, isDiatonic, type ScaleMode } from "@hum2music/music-theory";
-import { generateChordCandidates, type BarSegment, type ChordCandidate } from "./chord-candidates";
-import { harmonicNaturalnessScore } from "./harmonic-naturalness";
-import { voiceLeadingScore } from "./voice-leading";
+import { generateChordCandidates, type BarSegment, type ChordCandidate } from "./chord-candidates.ts";
+import { harmonicNaturalnessScore } from "./harmonic-naturalness.ts";
+import { voiceLeadingScore } from "./voice-leading.ts";
 
 export interface ProgressionSearchWeights {
   melodyFit: number;

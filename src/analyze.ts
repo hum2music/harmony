@@ -1,11 +1,11 @@
 import type { ChordEvent, KeyCandidate, NoteEvent, SongSection, TempoCandidate } from "@hum2music/core";
-import { groupNotesIntoBars } from "./bars";
-import { estimateKey } from "./key-estimation";
-import { quantizeToBeats } from "./quantize";
-import { searchChordProgression, type ProgressionSearchWeights } from "./progression-search";
-import { estimateSongStructure } from "./song-structure";
-import { estimateTempo } from "./tempo";
-import type { TimedNote } from "./timed-note";
+import { groupNotesIntoBars } from "./bars.ts";
+import { estimateKey } from "./key-estimation.ts";
+import { quantizeToBeats } from "./quantize.ts";
+import { searchChordProgression, type ProgressionSearchWeights } from "./progression-search.ts";
+import { estimateSongStructure } from "./song-structure.ts";
+import { estimateTempo } from "./tempo.ts";
+import type { TimedNote } from "./timed-note.ts";
 
 export interface HarmonyAnalysis {
   tempoCandidates: TempoCandidate[];
