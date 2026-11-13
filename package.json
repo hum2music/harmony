@@ -15,7 +15,7 @@
     "src"
   ],
   "dependencies": {
-    "@hum2music/core": "workspace:*",
-    "@hum2music/music-theory": "workspace:*"
+    "@hum2music/core": "^0.2.0",
+    "@hum2music/music-theory": "^0.2.0"
   }
 }
