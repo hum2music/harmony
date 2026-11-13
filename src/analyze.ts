@@ -4,7 +4,7 @@ import { estimateKey } from "./key-estimation.ts";
 import { quantizeToBeats } from "./quantize.ts";
 import { searchChordProgression, type ProgressionSearchWeights } from "./progression-search.ts";
 import { estimateSongStructure } from "./song-structure.ts";
-import { estimateTempo } from "./tempo.ts";
+import { estimateTempo, selectPreferredTempo } from "./tempo.ts";
 import type { TimedNote } from "./timed-note.ts";
 
 export interface HarmonyAnalysis {
@@ -26,7 +26,7 @@ export function analyzeHarmony(notes: TimedNote[], options: AnalyzeHarmonyOption
   const resolvedOptions: AnalyzeHarmonyOptions = typeof options === "number" ? { overrideBpm: options } : options;
 
   const tempoCandidates = estimateTempo(notes);
-  const selectedBpm = resolvedOptions.overrideBpm ?? tempoCandidates[0]?.bpm ?? 120;
+  const selectedBpm = resolvedOptions.overrideBpm ?? selectPreferredTempo(tempoCandidates) ?? 120;
 
   const melody = quantizeToBeats(notes, selectedBpm);
   const keyCandidates = estimateKey(notes);

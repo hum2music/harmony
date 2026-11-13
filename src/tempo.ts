@@ -59,3 +59,31 @@ function linkHalfAndDoubleTempoCandidates(candidates: TempoCandidate[]): void {
     if (strongerRelated) candidate.isHalfOrDoubleOf = strongerRelated.bpm;
   }
 }
+
+/** A half-tempo candidate must retain at least this fraction of the fastest candidate's confidence to be treated as the real tactus, not noise. */
+const MIN_HALF_TEMPO_CONFIDENCE_RATIO = 0.3;
+
+/**
+ * The raw histogram's most frequent interval is usually the shortest
+ * commonly-recurring note value (eighth/sixteenth notes), not the beat a
+ * listener would tap their foot to - a real melody has more subdivision-
+ * level onsets than beat-level ones by construction. Folds the fastest
+ * candidate down through any still-plausible half-tempo relative(s) before
+ * it's used as the song's actual tempo; `tempoCandidates` itself is left in
+ * raw-frequency order so callers still see the full, uncollapsed histogram.
+ */
+export function selectPreferredTempo(candidates: TempoCandidate[]): number | undefined {
+  if (candidates.length === 0) return undefined;
+
+  let preferred = candidates[0];
+  for (;;) {
+    const half = candidates.find(
+      (other) =>
+        other !== preferred &&
+        isCloseBpm(other.bpm, preferred.bpm / 2, preferred.bpm * 0.05) &&
+        other.confidence >= preferred.confidence * MIN_HALF_TEMPO_CONFIDENCE_RATIO,
+    );
+    if (!half) return preferred.bpm;
+    preferred = half;
+  }
+}
